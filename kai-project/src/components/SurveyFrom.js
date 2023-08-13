@@ -7,9 +7,19 @@ import { Model, EmailValidator } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 // import surveyJson
 import surveyJson from '../models/surveyJson';
+import { Configuration, OpenAIApi } from "openai";
+import axios from "axios";
+
+/*const configuration = new Configuration({
+ organization: "org-geHDbWQzO6NprgTQCkUYRLWx",
+ apiKey: process.env.OPENAI_API_KEY
+});
+const openai = new OpenAIApi(configuration);
+const response = await openai.retrieveModel("text-davinci-003");
+*/
 
 //api
-const SURVEY_ID = 1;
+const SURVEY_ID = "H304BME03218235";
 
 function SurveyForm() {
     const survey = new Model(surveyJson);
@@ -25,9 +35,34 @@ function SurveyForm() {
     const alertResults = useCallback((sender) => {
         const results = JSON.stringify(sender.data);
         alert(results);
+        // Pass the survey results to OpenAI API for chat completion
+        sendSurveyDataToOpenAI(sender.data);
       }, []);
 
     survey.onComplete.add(alertResults);
+
+    const sendSurveyDataToOpenAI = async (surveyData) => {
+      try {
+        const response = await axios.post(
+          "https://api.openai.com/v1/engines/davinci-codex/completions",
+          {
+            prompt: JSON.stringify(surveyData),
+            max_tokens: 50, // Adjust the number of tokens as needed
+          },
+          {
+            headers: {
+              Authorization: "Bearer uML2jZ88Qr27Eh5",
+            },
+          }
+        );
+  
+        const openAIResponse = response.data.choices[0].text;
+        // Do something with the response from OpenAI, such as updating your UI
+        console.log("OpenAI response:", openAIResponse);
+      } catch (error) {
+        console.error("Error sending data to OpenAI:", error);
+      }
+    };  
 
     return <Survey model={survey} />;
 }
