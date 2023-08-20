@@ -1,9 +1,16 @@
-import SurveyForm from "./components/SurveyFrom";
+import './App.css';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Form from './pages/Form';
 
 function App() {
   return (
     <div className="App">
-      <SurveyForm />
+      <Navbar />
+      <Home />
+      <About />
+      <Form />
     </div>
   );
 }
