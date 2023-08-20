@@ -33,10 +33,11 @@ function SurveyForm() {
       }, []);
     
     const alertResults = useCallback((sender) => {
-        const results = JSON.stringify(sender.data);
-        alert(results);
+        // const results = JSON.stringify(sender.data);
+        // alert(results);
         // Pass the survey results to OpenAI API for chat completion
         sendSurveyDataToOpenAI(sender.data);
+        // alert(results);
       }, []);
 
     survey.onComplete.add(alertResults);
@@ -44,23 +45,27 @@ function SurveyForm() {
     const sendSurveyDataToOpenAI = async (surveyData) => {
       try {
         const response = await axios.post(
-          "https://api.openai.com/v1/engines/davinci-codex/completions",
+          "https://api.openai.com/v1/engines/text-davinci-003/completions",
           {
             prompt: JSON.stringify(surveyData),
-            max_tokens: 50, // Adjust the number of tokens as needed
+            max_tokens: 2049, // Adjust the number of tokens as needed
           },
           {
             headers: {
-              Authorization: "Bearer uML2jZ88Qr27Eh5",
+              Authorization: "Bearer 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",
             },
           }
         );
-  
+        
         const openAIResponse = response.data.choices[0].text;
         // Do something with the response from OpenAI, such as updating your UI
+        console.log("Full API Response:", response.data); // Print full response
         console.log("OpenAI response:", openAIResponse);
+        alert(openAIResponse);
+        return openAIResponse;
       } catch (error) {
         console.error("Error sending data to OpenAI:", error);
+        console.log("Full Error Response:", error.response.data); // Print full error response
       }
     };  
 
