@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    cd ./kai-project/package.json
+    cd ./kai-project
     npm install
     npm run build
   displayName: 'npm install and build'
