@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SurveyForm from '../components/SurveyForm';
+import SurveyForm from '../components/SurveyForm.jsx';
 
 const Form = () => {
   const [showSurvey, setShowSurvey] = useState(false);
