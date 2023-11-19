@@ -45,7 +45,7 @@ function SurveyForm() {
           },
           {
             headers: {
-              Authorization: "Bearer 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",
+              Authorization: "Bearer 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",
             },
           }
         );
