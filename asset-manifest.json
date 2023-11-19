@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Child_care/static/css/main.24503612.css",
-    "main.js": "/Child_care/static/js/main.0b7431f8.js",
+    "main.js": "/Child_care/static/js/main.714b4993.js",
     "index.html": "/Child_care/index.html",
     "main.24503612.css.map": "/Child_care/static/css/main.24503612.css.map",
-    "main.0b7431f8.js.map": "/Child_care/static/js/main.0b7431f8.js.map"
+    "main.714b4993.js.map": "/Child_care/static/js/main.714b4993.js.map"
   },
   "entrypoints": [
     "static/css/main.24503612.css",
-    "static/js/main.0b7431f8.js"
+    "static/js/main.714b4993.js"
   ]
 }
